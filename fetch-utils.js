@@ -3,6 +3,50 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsI
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+export async function createTodo(todo){
+    const response = await client
+        .from('todos')
+        .insert({ 
+            todo: todo,
+            complete: false, 
+            user_id: client.auth.user().id, 
+        })
+        .single();
+
+    return checkError(response);
+}
+
+export async function deleteAllTodos() {
+    await client
+        .from('todos')
+        .delete()
+        .match({ user_id: client.auth.user().id, });
+}
+
+export async function getTodos() {
+    const response = await client
+        .from('todos')
+        .select()
+        .order('complete')
+        .match({ user_id: client.auth.user().id, });
+
+    return checkError(response);    
+}
+
+export async function completeTodo(id) {
+    const response = await client
+        .from('todos')
+        .update({ complete: true })
+        .match({ 
+            user_id: client.auth.user().id, 
+            id: id,
+        });
+
+    return checkError(response);    
+}
+
+
+
 export async function getUser() {
     return client.auth.session();
 }
@@ -16,7 +60,7 @@ export async function checkAuth() {
 
 export async function redirectIfLoggedIn() {
     if (await getUser()) {
-        location.replace('./other-page');
+        location.replace('./todos');
     }
 }
 

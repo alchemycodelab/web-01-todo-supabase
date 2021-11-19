@@ -16,17 +16,24 @@
 <body>
     <header>
         <div class="gutter-right logo">
-            <img src="../assets/big-logo.png" />
+            <h3>Todos</h3>
         </div>
     </header>    
-    <button id="logout">Logout</button>
-    <main>
-        <h1>You are logged in!</h1>
+    <main class="todos-main">
+        <button id="logout">Logout</button>
+        <form class="todo-form">
+            <input name="todo" required />
+            <button>Add todo</button>
+        </form>
+        <button class="delete-button">Delete all todos?</button>
+        <div class="todos">
+
+        </div>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
     </footer>
-    <script type="module" src="./other-page.js"></script>
+    <script type="module" src="./todos.js"></script>
 </body>
 
 </html>
