@@ -53,14 +53,6 @@ header {
     box-shadow: var(--shadow);
 }
 
-footer {
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    box-shadow: var(--shadow);
-}
-
-
 h2 {
     font-size: 1.8rem;
     font-weight: bold;
@@ -92,6 +84,7 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
   
   @keyframes pulse {
     20% {
@@ -111,3 +104,11 @@ footer {
     }
 
   }
+
+
+
+#logout {
+    position: fixed;
+    right: 20px;
+    top: 90px;
+}
