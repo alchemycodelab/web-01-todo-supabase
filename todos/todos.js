@@ -25,10 +25,10 @@ todoForm.addEventListener('submit', async(e) => {
     await createTodo(todo);
 
     todoForm.reset();
-    renderTodos();
+    displayTodos();
 });
 
-async function renderTodos() {
+async function displayTodos() {
     const todos = await getTodos();
     
     todosEl.textContent = '';
@@ -39,7 +39,7 @@ async function renderTodos() {
         todoEl.addEventListener('click', async() => {
             await completeTodo(todo.id);
 
-            renderTodos();
+            displayTodos();
         });
 
         todosEl.append(todoEl);
@@ -47,7 +47,7 @@ async function renderTodos() {
 }
 
 window.addEventListener('load', async() => {
-    renderTodos();
+    displayTodos();
 });
 
 logoutButton.addEventListener('click', () => {
@@ -58,5 +58,5 @@ logoutButton.addEventListener('click', () => {
 deleteButton.addEventListener('click', async() => {
     await deleteAllTodos();
 
-    renderTodos();
+    displayTodos();
 });
